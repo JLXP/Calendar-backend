@@ -96,7 +96,7 @@ const actualizarEvento= async(req,res= response)=>{
     }
 }
 
-const eliminarEvento = (req, res=response)=>{
+const eliminarEvento = async(req, res=response)=>{
 
  //con el req puedo obtener el id u otra informacion que se envia
     const eventoId = req.params.id;
