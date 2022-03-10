@@ -56,8 +56,10 @@ const loginUsuario = async(req, res = response)=>{
 
     try{
 
+        //primero hace una busqueda para saber si existe el dato
         const usuario = await Usuario.findOne({email});
 
+        //si no existe manda un error 400 de que no existe el dato
         if(!usuario){
             return res.status(400).json({
                 ok:false,
@@ -69,6 +71,7 @@ const loginUsuario = async(req, res = response)=>{
         //el compare es propio de librerias de react por lo cual solamente utiliza con el bcrypt
         const validPassword = bcrypt.compare( password, usuario.password );
 
+        //Si el password no es valido manda un error 400 que esta mal ese dato
         if( !validPassword){
             return res.status(400).json({
                 ok:false,
@@ -86,7 +89,8 @@ const loginUsuario = async(req, res = response)=>{
         res.status(201).json({
             ok:true,
             msg:'Login',
-            uid: usuario.name,
+            uid: usuario.id,
+            name: usuario.name,
             token
         });
 
