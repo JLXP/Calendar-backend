@@ -33,6 +33,7 @@ app.use( express.json());
 //se habilitan en donde estaran los edpoints
 //todo lo que exporta routes/auth lo hace mediante el api
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/events', require('./routes/events'));
 
 
 

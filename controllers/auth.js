@@ -98,9 +98,7 @@ const loginUsuario = async(req, res = response)=>{
             ok:false,
             msg:'Por favor hable con el administrador'
         });
-    }
-
-   
+    } 
 }
 
 //sirve para saber si el usuario es valido sino hacer que vuelva a loguearse
