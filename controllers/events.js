@@ -4,6 +4,9 @@ const Evento = require('../models/Evento');
 
 const getEventos= async(req,res= response)=>{
 
+    //el populate sirve para hacer referencia a otra collection de la base de datos
+    //yo elijo que datos quiero traer, el id de por si lo trae siempre
+    //en este caso le digo que me traiga el name
     const eventos = await Evento.find()
     .populate('user','name');
 
@@ -39,11 +42,15 @@ const crearEvento= async(req,res= response)=>{
     //verificar que tenga el evento
 }
 
-
+//La diferencia entre el create y el update es la siguiente
+//en el post estoy enviando datos
+//En el actualizar estoy recibiendo datos
 const actualizarEvento= async(req,res= response)=>{
 
     //con el req puedo obtener el id u otra informacion que se envia
+    //el req. params lo toma desde la url por ello el params
     const eventoId = req.params.id;
+    //este no se extrae, se envia
     const uid = req.uid;
 
     try{
@@ -60,13 +67,7 @@ const actualizarEvento= async(req,res= response)=>{
         /*esta validacion hace lo siguiente, si el usuario que esta logueado quiere eliminar oeditar alguna nota que 
             no el escribio saltara el siguiente error
         */
-
-
-        
-
-
-
-        if( evento.user.toString()!== uid){
+        if( evento.user.toString()!== uid ){
             // El error 401 es para cuando no esta autorizado en hacer algo
             return res.status(401).json({
                 ok:false,
@@ -88,7 +89,7 @@ const actualizarEvento= async(req,res= response)=>{
         });
 
     }catch(error){
-        console.log(error);
+        
         res.status(500).json({
             ok:false,
             msg: 'Hable con el administrador'

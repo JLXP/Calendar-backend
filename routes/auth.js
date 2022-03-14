@@ -5,10 +5,12 @@
 */
 
 const {Router} = require('express');
+/* Esta paqueteria sirve para poder realizar los correspondientes validacione usando el check */
 const {check} =require('express-validator');
 const {validarCampos} = require('../middlewares/validar-campos');
 const router = Router();
 
+//Importacion de los controlleres
 const {crearUsuario, loginUsuario, revalidarToken} = require('../controllers/auth');
 const { validarJWT } = require('../middlewares/validar-jwt');
 

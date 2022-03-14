@@ -26,6 +26,9 @@ const EventoSchema = Schema({
 
 });
 
+
+//al final de le digo que me traiga todo el objeto y al final tambien el id pero no como
+//_id sino como id
 EventoSchema.method('toJSON', function(){
     const {__v,_id,...object}=this.toObject();
     object.id = _id;

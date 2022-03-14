@@ -3,8 +3,6 @@ const {response} = require('express');
 const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 const {generarJWT} = require('../helpers/jwt');
-const { body } = require('express-validator');
-
 
 const crearUsuario = async(req, res= response)=>{
 
@@ -33,7 +31,7 @@ const crearUsuario = async(req, res= response)=>{
 
         //Generar JWT
         const token = await generarJWT(usuario.id, usuario.name);
-        console.log(token);
+        
 
         res.status(201).json({
             ok:true,
@@ -77,7 +75,7 @@ const loginUsuario = async(req, res = response)=>{
         if( !validPassword){
             return res.status(400).json({
                 ok:false,
-                msg:'Password incorrecto'
+                msg:'Los datos son incorrectos, por favor de verificar'
             })
         }
 
@@ -86,7 +84,7 @@ const loginUsuario = async(req, res = response)=>{
         //Al ser una promesa tiene que esperar por medio de un await, primero se ejecuta el json web tokken
         //despues sigue todo lo despues
         const token = await generarJWT(usuario.id, usuario.name);
-        console.log(token);
+        
 
         res.status(201).json({
             ok:true,

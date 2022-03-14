@@ -14,6 +14,7 @@ const {validarCampos} = require('../middlewares/validar-campos');
 //Todas las rutas tienen que estar validadas por el jsonwebtoken
 const {validarJWT} = require('../middlewares/validar-jwt');
 const { getEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/events');
+//esto sirve para guardar la fecha correcta
 const { isDate } = require('../helpers/isDate');
 const router = Router();
 

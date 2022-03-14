@@ -1,11 +1,14 @@
 //No se puede importar como en react, que digamos por ejemplo import express from 'express'
 const express = require('express');
+//el paquete cors o libreria sirve para poder proteger las rutas
 const cors = require ('cors');
+//el dotenv sirve para poder acceder los enviroment, osea los archivos que no se pueden
+//acceder por cualquier usuario
 require('dotenv').config();
 
 const {dbConnection} = require('./database/config')
 
-//Crear el servidor de express
+//Crear el servidor de express, una instancia para poder usar express
 const app = express();
 
 //Base de datos
@@ -20,7 +23,8 @@ app.use(cors());
 //middleware se ejecuta antes de cualquier cosa
 
 
-
+//declaracion para usar la carpeta public, esto sirve para el final, cuando se termina de usar react
+//y se crea en npm run build
 app.use(express.static('public'));
 
 
@@ -32,6 +36,7 @@ app.use( express.json());
 //TODO: crud: Eventos
 //se habilitan en donde estaran los edpoints
 //todo lo que exporta routes/auth lo hace mediante el api
+//se declaran las rutas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
